@@ -1,5 +1,9 @@
 # Model Documentation
 
+## Diagram
+
+-   https://dbdiagram.io/d/5cffc457fff7633dfc8e27b1
+
 ## Getting Started
 
 1. [(**Object**) User](models/USER.md)
