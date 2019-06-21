@@ -1,4 +1,4 @@
-# User Model
+# **(Object)** User
 
 ```typescript
 interface User {
