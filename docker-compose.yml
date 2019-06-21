@@ -1,18 +1,6 @@
 version: "3"
 
 services:
-#  backend:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.dev
-#    container_name: open_reg_dev
-#    env_file: .env
-#    ports:
-#      - $PORT:$PORT
-#    links:
-#      - mongo
-#    volumes:
-#      - ./:/app
   mongo:
     image: mongo:latest
     container_name: "mongodb"
