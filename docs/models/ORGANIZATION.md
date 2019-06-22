@@ -10,9 +10,9 @@
 
 ## `organization_member`
 
-| Column Name  | Type | #                             |
-| ------------ | ---- | ----------------------------- |
-| id           | int  | -                             |
-| user         | int  | `(Object) User._id`           |
-| organization | int  | `organization.id`             |
-| role         | enum | `OWNER`, `COMMITEE`, `MEMBER` |
+| Column Name     | Type   | #                       |
+| --------------- | ------ | ----------------------- |
+| id              | int    | -                       |
+| user_id         | String | **(Object)** `User._id` |
+| organization_id | int    | `organization.id`       |
+| role            | enum   | OWNER, COMMITEE, MEMBER |

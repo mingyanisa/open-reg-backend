@@ -11,22 +11,22 @@
 
 ## `form_question`
 
-| Column Name | Type | #                                                          |
-| ----------- | ---- | ---------------------------------------------------------- |
-| id          | int  | -                                                          |
-| form_id     | int  | `form.id`                                                  |
-| type        | enum | `SHORT_ANSWER`, `MULTIPLE_CHOICE`,`CHECKBOXES`, `DROPDOWN` |
-| order       | int  | -                                                          |
-| question    | text | -                                                          |
-| answer      | json | -                                                          |
+| Column Name | Type | #                                                  |
+| ----------- | ---- | -------------------------------------------------- |
+| id          | int  | -                                                  |
+| form_id     | int  | `form.id`                                          |
+| type        | enum | SHORT_ANSWER, MULTIPLE_CHOICE,CHECKBOXES, DROPDOWN |
+| order       | int  | -                                                  |
+| question    | text | -                                                  |
+| answer      | json | -                                                  |
 
 ## `form_response`
 
-| Column Name | Type | #                   |
-| ----------- | ---- | ------------------- |
-| id          | int  | -                   |
-| user        | int  | `(Object) User._id` |
-| form        | int  | `form.id`           |
+| Column Name | Type   | #                       |
+| ----------- | ------ | ----------------------- |
+| id          | int    | -                       |
+| user_id     | String | **(Object)** `User._id` |
+| form_id     | int    | `form.id`               |
 
 ## `form_response_answer`
 

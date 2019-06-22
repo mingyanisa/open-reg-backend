@@ -2,14 +2,14 @@
 
 ## `event`
 
-| Column Name | Type     | #                 |
-| ----------- | -------- | ----------------- |
-| id          | int      | -                 |
-| organizer   | int      | `organization.id` |
-| name        | text     | -                 |
-| date        | datetime | -                 |
-| location    | text     | -                 |
-| public      | boolean  | -                 |
+| Column Name     | Type     | #                 |
+| --------------- | -------- | ----------------- |
+| id              | int      | -                 |
+| organization_id | int      | `organization.id` |
+| name            | text     | -                 |
+| date            | datetime | -                 |
+| location        | text     | -                 |
+| public          | boolean  | -                 |
 
 ## `event_user`
 
