@@ -11,14 +11,14 @@
 
 ## `form_question`
 
-| Column Name | Type | #                                                  |
-| ----------- | ---- | -------------------------------------------------- |
-| id          | int  | -                                                  |
-| form_id     | int  | `form.id`                                          |
-| type        | enum | SHORT_ANSWER, MULTIPLE_CHOICE,CHECKBOXES, DROPDOWN |
-| order       | int  | -                                                  |
-| question    | text | -                                                  |
-| answer      | json | -                                                  |
+| Column Name | Type | #                                                   |
+| ----------- | ---- | --------------------------------------------------- |
+| id          | int  | -                                                   |
+| form_id     | int  | `form.id`                                           |
+| type        | enum | SHORT_ANSWER, MULTIPLE_CHOICE, CHECKBOXES, DROPDOWN |
+| order       | int  | -                                                   |
+| question    | text | -                                                   |
+| answer      | json | -                                                   |
 
 ## `form_response`
 

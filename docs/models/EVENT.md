@@ -13,9 +13,9 @@
 
 ## `event_user`
 
-| Column Name | Type    | #                   |
-| ----------- | ------- | ------------------- |
-| id          | int     | -                   |
-| user_id     | int     | `(Object) User._id` |
-| event_id    | int     | `event.id`          |
-| attended    | boolean | -                   |
+| Column Name | Type    | #                         |
+| ----------- | ------- | ------------------------- |
+| id          | int     | -                         |
+| user_id     | String  | \*(Object)\*\* `User._id` |
+| event_id    | int     | `event.id`                |
+| attended    | boolean | -                         |
