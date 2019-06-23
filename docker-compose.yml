@@ -1,14 +1,22 @@
-version: "3"
+version: '3'
 
 services:
-  mongo:
-    image: mongo:latest
-    container_name: "mongodb"
-    ports:
-      - 27017:27017
-    volumes:
-      - mongo:/data/db
-    command: mongod --smallfiles
-
+    mongo:
+        image: mongo:latest
+        container_name: 'open-reg-mongo'
+        ports:
+            - 27017:27017
+        volumes:
+            - mongo:/data/db
+        command: mongod --smallfiles
+    postgres:
+        image: postgres:latest
+        container_name: 'open-reg-postgres'
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: postgres
+            POSTGRES_PASSWORD: postgres
 volumes:
-  mongo:
+    mongo:
