@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+    backend:
+        container_name: "open-reg-backend"
+        build:
+            context: .
+        ports:
+            - 8080:8080
+        depends_on:
+          - mongo
+          - postgres
     mongo:
         image: mongo:latest
         container_name: 'open-reg-mongo'
@@ -16,7 +25,7 @@ services:
         ports:
             - 5432:5432
         environment:
-            POSTGRES_DB: open_reg
+            POSTGRES_DB: postgres
             POSTGRES_PASSWORD: postgres
         volumes:
             - postgres:/var/lib/postgresql/data
