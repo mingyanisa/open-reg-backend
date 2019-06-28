@@ -1,7 +1,9 @@
 package org.thinc.demo.example
 
-import org.springframework.http.ResponseEntity
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
+import org.thinc.demo.common.badRequest
 
 @RestController
 @RequestMapping("/cat")
@@ -11,27 +13,28 @@ class CatController(private val catService: ICatService) {
     fun adoptCat(@RequestBody cat: Cat) = catService.adoptCat(cat)
 
     @GetMapping("{name}")
-    fun callCat(@PathVariable name: String): ResponseEntity<Any> {
+    fun callCat(@PathVariable name: String): Cat {
         val cat = catService.callCat(name)
-        return cat.map { ResponseEntity.ok<Any>(it) }.orElse(ResponseEntity.badRequest().body(mapOf("error" to "not found")))
+        return cat.orElseThrow { badRequest( "cat not found.") }
     }
 
     @GetMapping("")
-    fun listCats(@RequestParam(value = "age", defaultValue = "1") age: Int): ResponseEntity<List<Cat>> {
+    fun listCats(@RequestParam(value = "age", defaultValue = "1") age: Int): List<Cat> {
         val cats = catService.listCatsByAge(age)
-        return ResponseEntity.ok(cats)
+        return (cats)
     }
 
     @PatchMapping("")
-    fun changeName(@RequestBody updateName: UpdateName): ResponseEntity<Any> {
+    fun changeName(@RequestBody updateName: UpdateName): Cat {
         val cat = catService.changeName(updateName.id, updateName.name)
-        return cat.map { ResponseEntity.ok<Any>(it) }.orElse(ResponseEntity.badRequest().body(mapOf("error" to "not found")))
+        return cat.orElseThrow { badRequest("cat not found") }
     }
 
     @DeleteMapping("{id}")
-    fun runAway(@PathVariable id: String): ResponseEntity<Any> {
+    fun runAway(@PathVariable id: String): Map<String, String> {
         val cat = catService.runAway(id)
-        return cat.map { ResponseEntity.ok<Any>(mapOf("message" to "${it.name} ran away :(")) }.orElse(ResponseEntity.badRequest().body(mapOf("error" to "not found")))
+        return cat.map { mapOf("message" to "${it.name} ran away :(") }
+                .orElseThrow { badRequest("cat not found") }
     }
 
 }
