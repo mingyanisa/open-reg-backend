@@ -11,28 +11,28 @@ interface CatRepository : MongoRepository<Cat, String> {
 
 interface ICatService {
     fun adoptCat(cat: Cat): Cat
-    fun changeName(id:String, name: String): Optional<Cat>
+    fun changeName(id: String, name: String): Optional<Cat>
     fun runAway(id: String): Optional<Cat>
     fun listCatsByAge(age: Int): List<Cat>
     fun callCat(name: String): Optional<Cat>
 }
 
 @Service
-class CatService(val catRepo: CatRepository): ICatService {
+class CatService(val catRepo: CatRepository) : ICatService {
 
     override fun adoptCat(cat: Cat) = catRepo.insert(cat)
 
-    override fun changeName(id: String, name: String): Optional<Cat>  = catRepo.findById(id).map { catRepo.save(it.copy(name = name)) }
+    override fun changeName(id: String, name: String): Optional<Cat> =
+            catRepo.findById(id).map { catRepo.save(it.copy(name = name)) }
 
     override fun callCat(name: String): Optional<Cat> = catRepo.findByName(name)
 
     override fun listCatsByAge(age: Int): List<Cat> = catRepo.findByAgeLessThan(age)
 
-    override fun runAway(id: String): Optional<Cat> = catRepo.findById(id).map{
+    override fun runAway(id: String): Optional<Cat> = catRepo.findById(id).map {
         catRepo.deleteById(id)
         it
     }
-
 
 
 }

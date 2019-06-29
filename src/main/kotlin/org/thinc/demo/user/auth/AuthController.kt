@@ -9,19 +9,19 @@ interface IAuthService {
     fun validateTicket(ticket: String): TokenPayload
 }
 
-data class TokenPayload(val token:String)
+data class TokenPayload(val token: String)
 
 @RestController
 @RequestMapping("/auth")
 class AuthController(private val authService: IAuthService) {
     @PostMapping("register")
-    fun register(@RequestBody user: User, @RequestHeader("authorization")token: String): User {
+    fun register(@RequestBody user: User, @RequestHeader("authorization") token: String): User {
         val id = authenticate(token)
         return authService.register(user, id)
     }
 
     @GetMapping("validate")
-    fun validateTicket(@RequestParam("ticket") ticket: String): TokenPayload{
+    fun validateTicket(@RequestParam("ticket") ticket: String): TokenPayload {
         return authService.validateTicket("ticket")
     }
 

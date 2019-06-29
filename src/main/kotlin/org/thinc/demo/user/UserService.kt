@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UserService(val userRepository: UserRepository) : IUserService  {
+class UserService(val userRepository: UserRepository) : IUserService {
     override fun viewProfile(id: String): Optional<User> {
         return userRepository.findById(id)
     }

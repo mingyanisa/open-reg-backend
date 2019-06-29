@@ -13,17 +13,17 @@ interface IUserService {
 
 @RequestMapping("/user")
 @RestController
-class UserController (val userService: IUserService){
+class UserController(val userService: IUserService) {
     @GetMapping("/{id}")
-    fun viewProfile(@RequestHeader("authorization") token: String, @PathVariable id: String): User{
+    fun viewProfile(@RequestHeader("authorization") token: String, @PathVariable id: String): User {
         authenticate(token)
         return userService.viewProfile(id).orElseThrow { badRequest("User not found.") }
     }
 
     @PostMapping("")
-    fun editProfile(@RequestHeader("authorization") token: String, @RequestBody user: User): User{
+    fun editProfile(@RequestHeader("authorization") token: String, @RequestBody user: User): User {
         val id = authenticate(token)
-        if(id != user.id) throw unauthorized("Can only edit your own profile.")
+        if (id != user.id) throw unauthorized("Can only edit your own profile.")
         return userService.editProfile(user).orElseThrow { badRequest("User not found") }
     }
 }

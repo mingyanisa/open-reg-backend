@@ -20,6 +20,6 @@ fun authenticate(token: String): String {
     try {
         return validateToken(token)
     } catch (e: SignatureException) {
-        throw ResponseStatusException(HttpStatus.UNAUTHORIZED,"invalid token", e)
+        throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "invalid token", e)
     }
 }

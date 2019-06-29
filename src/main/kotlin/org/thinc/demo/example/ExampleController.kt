@@ -15,7 +15,7 @@ class CatController(private val catService: ICatService) {
     @GetMapping("{name}")
     fun callCat(@PathVariable name: String): Cat {
         val cat = catService.callCat(name)
-        return cat.orElseThrow { badRequest( "cat not found.") }
+        return cat.orElseThrow { badRequest("cat not found.") }
     }
 
     @GetMapping("")
