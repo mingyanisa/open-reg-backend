@@ -6,6 +6,8 @@ services:
     volumes:
       - .:/server
     command: sh -c 'cd /server && yarn && yarn start:dev'
+    ports:
+      - 3000:3000
     environment: 
       MONGO_URL:
       NODE_ENV: development
