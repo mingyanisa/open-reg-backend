@@ -2,10 +2,9 @@ version: "3.2"
 
 services:
   backend: 
-    image: node:10-alpine
     volumes:
       - .:/server
-    command: sh -c 'cd /server && yarn && yarn start:dev'
+    command: ['yarn', 'start:dev']
     ports:
       - 3000:3000
     environment: 
