@@ -3,12 +3,13 @@ version: "3.2"
 services:
   backend: 
     volumes:
-      - .:/server
+      - ./src:/app/src
     command: ['yarn', 'start:dev']
     ports:
       - 3000:3000
     environment: 
       MONGO_URL:
+      SECRET:
       NODE_ENV: development
     depends_on:
       - db
