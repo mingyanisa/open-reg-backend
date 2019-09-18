@@ -21,6 +21,10 @@ export class EventService {
         return this.eventModel.findById(id).exec();
     }
 
+    getAll() {
+        return this.eventModel.find().exec();
+    }
+
     async deleteEvent(id: string) {
         return this.eventModel.findByIdAndDelete(id);
     }
