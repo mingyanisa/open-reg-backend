@@ -14,7 +14,7 @@ import { EventService } from './event.service';
 export class EventController {
     constructor(private readonly eventService: EventService) {}
 
-    @Post('')
+    @Post()
     createEvent(@Body() event: CreateEventDTO) {
         return this.eventService.createEvent(event);
     }
@@ -29,7 +29,7 @@ export class EventController {
         return this.eventService.getEvent(id);
     }
 
-    @Get('')
+    @Get()
     getAll() {
         return this.eventService.getAll();
     }
