@@ -1,8 +1,8 @@
-import { IsString, IsOptional, Length } from 'class-validator';
+import { IsString, IsOptional, IsNotEmpty } from 'class-validator';
 import { Event } from './event.model';
 
 export class CreateEventDTO implements Event {
-    @Length(1)
+    @IsNotEmpty()
     @IsString()
     name: string;
 
@@ -16,6 +16,7 @@ export class CreateEventDTO implements Event {
 }
 
 export class EditEventDTO implements Partial<Event> {
+    @IsNotEmpty()
     @IsOptional()
     @IsString()
     name?: string;
