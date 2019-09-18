@@ -5,6 +5,7 @@ import {
     IsIn,
     IsBoolean,
     IsOptional,
+    IsMongoId,
 } from 'class-validator';
 import { QUESTION_TYPES } from './question.model';
 import { Type } from 'class-transformer';
@@ -27,10 +28,9 @@ export class QuestionDTO {
     description: string;
 }
 
-// tslint:disable-next-line:max-classes-per-file
 export class CreateFormDTO {
-    // @IsString()
-    // eventId: string;
+    @IsMongoId()
+    eventId: string;
 
     @IsString()
     title: string;
