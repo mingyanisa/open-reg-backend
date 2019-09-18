@@ -1,7 +1,18 @@
 import { Model, Document, Schema } from 'mongoose';
 
+enum QuestionTypes {
+    RADIO,
+    CHECKBOX,
+    TEXT,
+    EMAIL,
+    PHONE,
+    COLOR,
+    DATE,
+    TIME,
+}
+
 export interface Question extends Document {
-    type: any;
+    type: QuestionTypes;
     title: string;
     choices: string[];
     required: boolean;
