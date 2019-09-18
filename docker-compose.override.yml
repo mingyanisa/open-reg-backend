@@ -8,8 +8,8 @@ services:
     ports:
       - 3000:3000
     environment: 
-      MONGO_URL:
-      SECRET:
+      MONGO_URL: mongodb://db/open-reg
+      SECRET: secret
       NODE_ENV: development
     depends_on:
       - db

@@ -11,11 +11,21 @@ export interface Question extends Document {
 export type QuestionModel = Model<Question>;
 
 export const QUESTION_MODEL = 'question';
+export const QUESTION_TYPES = [
+    'RADIO',
+    'CHECKBOX',
+    'TEXT',
+    'EMAIL',
+    'PHONE',
+    'COLOR',
+    'DATE',
+    'TIME',
+];
 
 export const QuestionSchema = new Schema({
     type: {
         type: String,
-        enum: ['RADIO', 'CHECKBOX', 'TEXT', 'EMAIL', 'PHONE', 'COLOR', 'DATE', 'TIME'],
+        enum: QUESTION_TYPES,
         required: true,
     },
     title: {
@@ -33,6 +43,6 @@ export const QuestionSchema = new Schema({
     },
     description: {
         type: String,
-        required: false
-    }
+        required: false,
+    },
 });
