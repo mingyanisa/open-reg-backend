@@ -17,6 +17,10 @@ export class FormService {
         return await newForm.save();
     }
 
+    findAll() {
+        return this.formModel.find().exec();
+    }
+
     findById(id: string) {
         return this.formModel.findById(id).exec();
     }
