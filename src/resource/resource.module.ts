@@ -7,7 +7,6 @@ import { FormModule } from '../form/form.module';
 import { EventModule } from '../event/event.module';
 import { ResponseModule } from '../response/response.module';
 import { UserModule } from '../user/user.module';
-import { SeederService } from './seeder/seeder.service';
 
 @Module({
     imports: [

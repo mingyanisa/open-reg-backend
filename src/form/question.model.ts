@@ -1,6 +1,6 @@
 import { Model, Document, Schema } from 'mongoose';
 
-enum QuestionTypes {
+export enum QuestionTypes {
     RADIO,
     CHECKBOX,
     TEXT,
@@ -11,7 +11,7 @@ enum QuestionTypes {
     TIME,
 }
 
-export interface Question extends Document {
+export interface Question {
     type: QuestionTypes;
     title: string;
     choices: string[];
@@ -19,7 +19,9 @@ export interface Question extends Document {
     description: string;
 }
 
-export type QuestionModel = Model<Question>;
+export interface QuestionDocument extends Document {}
+
+export type QuestionModel = Model<QuestionDocument>;
 
 export const QUESTION_MODEL = 'question';
 export const QUESTION_TYPES = [

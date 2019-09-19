@@ -3,6 +3,7 @@ import {
     QUESTION_MODEL,
     QuestionModel,
     Question,
+    QUESTION_TYPES,
 } from '../../form/question.model';
 import { FORM_MODEL, FormModel, Form } from '../../form/form.model';
 import { InjectModel } from '@nestjs/mongoose';
@@ -30,8 +31,7 @@ export class SeederService {
     }
 
     async seedEvents() {
-        Logger.log('Go seedEvents()');
-        Logger.log('Start');
+        Logger.log('[EventSeeder] Start');
         const events: Event[] = [];
         for (let i = 0; i < this.ENTRIES; i++) {
             const event: Event = {
@@ -45,20 +45,20 @@ export class SeederService {
             };
             events.push(event);
         }
-        Logger.log('Inserting');
+        Logger.log('[EventSeeder] Inserting');
         await this.eventModel.insertMany(events);
         const data = await this.eventModel.find({}, (err, d) => {
             d.forEach(dd => {
                 // @ts-ignore
-                Logger.log(dd.name);
+                Logger.log('[EventSeeder] ' + dd.name);
             });
         });
-        Logger.log('Entries: ' + data.length);
-        Logger.log('Done');
+        Logger.log('[EventSeeder] Entries: ' + data.length);
+        Logger.log('[EventSeeder] Done');
     }
 
     async seedForms() {
-        Logger.log('Go seedForms()');
+        Logger.log('[FormSeeder] Starting');
         let events = await this.eventModel.find({}, '_id');
 
         if (events.length <= 0) {
@@ -69,9 +69,33 @@ export class SeederService {
         const forms: Form[] = [];
 
         events.forEach(ee => {
+            const questions: Question[] = [];
+            for (let i = 0; i < this.ENTRIES; i++) {
+                const type = faker.random.arrayElement(QUESTION_TYPES);
+                const choices: string[] = [];
+                if (type === 'RADIO' || type === 'CHECKBOX') {
+                    for (let i = 0; i < 4; i++) {
+                        choices.push(
+                            i + 1 + ': ' + faker.commerce.productName(),
+                        );
+                    }
+                }
+                const question: Question = {
+                    // @ts-ignore
+                    type,
+                    title: 'Q: ' + faker.commerce.productName(),
+                    choices: choices.length > 0 ? choices : null,
+                    required: Math.round(Math.random()) === 0,
+                    description:
+                        Math.round(Math.random()) === 0
+                            ? faker.lorem.sentence()
+                            : '',
+                };
+                questions.push(question);
+            }
             const form: Form = {
                 eventId: ee._id,
-                questions: [],
+                questions,
                 title: 'F: ' + faker.commerce.productName() + '?',
                 description:
                     Math.round(Math.random()) === 0
@@ -81,19 +105,23 @@ export class SeederService {
             forms.push(form);
         });
 
+        Logger.log('[FormSeeder] Inserting');
         await this.formModel.insertMany(forms);
         const data = await this.formModel.find({}, (err, d) => {
             d.forEach(dd => {
                 // @ts-ignore
-                Logger.log(dd.title);
+                Logger.log(
+                    // @ts-ignore
+                    dd.title + ' (' + dd.questions.length + ' Questions)',
+                );
             });
         });
-        Logger.log('Entries: ' + data.length);
-        Logger.log('Done');
+        Logger.log('[FormSeeder] Entries: ' + data.length);
+        Logger.log('[FormSeeder] Done');
     }
 
     async seedResponses() {
-        // Depends: QUESTION
+        // Depends: FORM
         Logger.log('Seeding "RESPONSE"');
     }
 
