@@ -9,7 +9,7 @@ export interface Form {
     description: string;
 }
 
-export interface FormDocument extends Document {}
+export interface FormDocument extends Document, Form {}
 
 export type FormModel = Model<FormDocument>;
 

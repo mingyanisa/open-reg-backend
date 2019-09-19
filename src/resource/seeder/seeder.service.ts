@@ -4,8 +4,15 @@ import {
     QuestionModel,
     Question,
     QUESTION_TYPES,
+    QuestionDocument,
+    QuestionTypes,
 } from '../../form/question.model';
-import { FORM_MODEL, FormModel, Form } from '../../form/form.model';
+import {
+    FORM_MODEL,
+    FormModel,
+    Form,
+    FormDocument,
+} from '../../form/form.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { EVENT_MODEL, EventModel, Event } from '../../event/event.model';
 import { RESPONSE_MODEL, ResponseModel } from '../../response/response.model';
@@ -14,7 +21,7 @@ import * as faker from 'faker';
 
 @Injectable()
 export class SeederService {
-    readonly ENTRIES = 20;
+    readonly ENTRIES = 10;
 
     constructor(
         @InjectModel(FORM_MODEL) private readonly formModel: FormModel,
@@ -49,7 +56,6 @@ export class SeederService {
         await this.eventModel.insertMany(events);
         const data = await this.eventModel.find({}, (err, d) => {
             d.forEach(dd => {
-                // @ts-ignore
                 Logger.log('[EventSeeder] ' + dd.name);
             });
         });
@@ -71,19 +77,21 @@ export class SeederService {
         events.forEach(ee => {
             const questions: Question[] = [];
             for (let i = 0; i < this.ENTRIES; i++) {
-                const type = faker.random.arrayElement(QUESTION_TYPES);
+                const order = i + 1;
+                const type = faker.random.arrayElement(
+                    QUESTION_TYPES,
+                ) as QuestionTypes;
                 const choices: string[] = [];
                 if (type === 'RADIO' || type === 'CHECKBOX') {
-                    for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
                         choices.push(
-                            i + 1 + ': ' + faker.commerce.productName(),
+                            j + 1 + ': ' + faker.commerce.productName(),
                         );
                     }
                 }
                 const question: Question = {
-                    // @ts-ignore
                     type,
-                    order: i + 1,
+                    order,
                     title: 'Q: ' + faker.commerce.productName(),
                     choices: choices.length > 0 ? choices : null,
                     required: Math.round(Math.random()) === 0,
@@ -94,6 +102,7 @@ export class SeederService {
                 };
                 questions.push(question);
             }
+
             const form: Form = {
                 eventId: ee._id,
                 questions,
@@ -103,16 +112,15 @@ export class SeederService {
                         ? faker.lorem.sentence()
                         : '',
             };
+
             forms.push(form);
         });
 
         Logger.log('[FormSeeder] Inserting');
         await this.formModel.insertMany(forms);
         const data = await this.formModel.find({}, (err, d) => {
-            d.forEach(dd => {
-                // @ts-ignore
+            d.forEach((dd: FormDocument) => {
                 Logger.log(
-                    // @ts-ignore
                     dd.title + ' (' + dd.questions.length + ' Questions)',
                 );
             });

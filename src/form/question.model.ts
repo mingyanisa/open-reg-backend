@@ -1,15 +1,15 @@
 import { Model, Document, Schema } from 'mongoose';
 
 export enum QuestionTypes {
-    RADIO,
-    CHECKBOX,
-    TEXT,
-    EMAIL,
-    PHONE,
-    COLOR,
-    DATE,
-    TIME,
-    DROPDOWN,
+    RADIO = 'RADIO',
+    CHECKBOX = 'CHECKBOX',
+    TEXT = 'TEXT',
+    EMAIL = 'EMAIL',
+    PHONE = 'PHONE',
+    COLOR = 'COLOR',
+    DATE = 'DATE',
+    TIME = 'TIME',
+    DROPDOWN = 'DROPDOWN',
 }
 
 export interface Question {
@@ -21,7 +21,7 @@ export interface Question {
     description: string;
 }
 
-export interface QuestionDocument extends Document {}
+export interface QuestionDocument extends Document, Question {}
 
 export type QuestionModel = Model<QuestionDocument>;
 
@@ -42,7 +42,7 @@ export const QuestionSchema = new Schema({
     order: {
         type: Number,
         required: true,
-        unique: true,
+        // unique: true,
     },
     type: {
         type: String,

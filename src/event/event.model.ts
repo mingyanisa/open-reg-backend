@@ -6,7 +6,7 @@ export interface Event {
     location?: string;
 }
 
-export interface EventDocument extends Document {}
+export interface EventDocument extends Document, Event {}
 
 export type EventModel = Model<EventDocument>;
 
