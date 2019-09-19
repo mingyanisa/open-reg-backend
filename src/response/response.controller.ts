@@ -6,11 +6,11 @@ import { CreateResponseDTO } from './response.dto';
 export class ResponseController {
     constructor(private readonly responseService: ResponseService) {}
     @Get(':id')
-    getForm(@Param() params) {
+    getForm(@Param() params: string) {
         return this.responseService.findById(params.id);
     }
 
-    @Post('create')
+    @Post()
     createForm(@Body() createResponse: CreateResponseDTO) {
         return this.responseService.createResponse(createResponse);
     }

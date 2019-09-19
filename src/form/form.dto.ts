@@ -16,6 +16,7 @@ export class QuestionDTO {
     @IsString()
     title: string;
 
+    @IsOptional()
     @IsArray()
     choices: string[];
 

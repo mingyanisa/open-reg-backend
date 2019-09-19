@@ -1,5 +1,6 @@
 import { Model, Document, Schema } from 'mongoose';
 import { Question, QuestionSchema } from './question.model';
+import { EVENT_MODEL } from '../event/event.model';
 
 export interface Form extends Document {
     eventId: string;
@@ -16,7 +17,7 @@ export const FormSchema = new Schema({
     eventId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'event',
+        ref: EVENT_MODEL,
     },
     questions: {
         type: [QuestionSchema],
