@@ -2,14 +2,16 @@ import { Model, Document, Schema } from 'mongoose';
 import { Question, QuestionSchema } from './question.model';
 import { EVENT_MODEL } from '../event/event.model';
 
-export interface Form extends Document {
+export interface Form {
     eventId: string;
     questions: Question[];
     title: string;
     description: string;
 }
 
-export type FormModel = Model<Form>;
+export interface FormDocument extends Document {}
+
+export type FormModel = Model<FormDocument>;
 
 export const FORM_MODEL = 'form';
 

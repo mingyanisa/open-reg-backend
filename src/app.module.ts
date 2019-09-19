@@ -8,8 +8,6 @@ import { AuthModule } from './auth/auth.module';
 import { EventModule } from './event/event.module';
 import { ResponseModule } from './response/response.module';
 import { FormModule } from './form/form.module';
-import { SeederModule } from './resources/seeder/seeder.module';
-import { SeederService } from './resource/seeder/seeder.service';
 
 @Module({
     imports: [
@@ -28,9 +26,8 @@ import { SeederService } from './resource/seeder/seeder.service';
         EventModule,
         ResponseModule,
         FormModule,
-        SeederModule,
     ],
     controllers: [AppController],
-    providers: [SeederService],
+    providers: [],
 })
 export class AppModule {}
