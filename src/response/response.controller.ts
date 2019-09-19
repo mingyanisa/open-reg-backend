@@ -6,8 +6,8 @@ import { CreateResponseDTO } from './response.dto';
 export class ResponseController {
     constructor(private readonly responseService: ResponseService) {}
     @Get(':id')
-    getForm(@Param() params: string) {
-        return this.responseService.findById(params.id);
+    getForm(@Param('id') id: string) {
+        return this.responseService.findById(id);
     }
 
     @Post()

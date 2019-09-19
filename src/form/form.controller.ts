@@ -7,8 +7,8 @@ export class FormController {
     constructor(private readonly formService: FormService) {}
 
     @Get(':id')
-    getForm(@Param() params: string) {
-        return this.formService.findById(params.id);
+    getForm(@Param('id') id: string) {
+        return this.formService.findById(id);
     }
 
     @Post()
