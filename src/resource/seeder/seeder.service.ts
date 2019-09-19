@@ -83,6 +83,7 @@ export class SeederService {
                 const question: Question = {
                     // @ts-ignore
                     type,
+                    order: i + 1,
                     title: 'Q: ' + faker.commerce.productName(),
                     choices: choices.length > 0 ? choices : null,
                     required: Math.round(Math.random()) === 0,

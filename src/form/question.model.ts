@@ -9,9 +9,11 @@ export enum QuestionTypes {
     COLOR,
     DATE,
     TIME,
+    DROPDOWN,
 }
 
 export interface Question {
+    order: number;
     type: QuestionTypes;
     title: string;
     choices: string[];
@@ -33,9 +35,15 @@ export const QUESTION_TYPES = [
     'COLOR',
     'DATE',
     'TIME',
+    'DROPDOWN',
 ];
 
 export const QuestionSchema = new Schema({
+    order: {
+        type: Number,
+        required: true,
+        unique: true,
+    },
     type: {
         type: String,
         enum: QUESTION_TYPES,

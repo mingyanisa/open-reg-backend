@@ -5,7 +5,7 @@ import { USER_MODEL } from '../user/user.model';
 export interface Response extends Document {
     formId: string;
     userId: string;
-    answers: string[];
+    answers: string;
 }
 
 export type ResponseModel = Model<Response>;
@@ -24,7 +24,7 @@ export const ResponseSchema = new Schema({
         ref: USER_MODEL,
     },
     answers: {
-        type: [String],
+        type: Map,
         required: true,
     },
 });
