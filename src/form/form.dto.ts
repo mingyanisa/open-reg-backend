@@ -11,7 +11,7 @@ import {
 import { QUESTION_TYPES, Question, QuestionTypes } from './question.model';
 import { Type } from 'class-transformer';
 import { Form } from './form.model';
-import { FormGroup } from './form-group.model';
+import { FormGroup } from './formGroup.model';
 export class QuestionDTO implements Question {
     @IsIn(QUESTION_TYPES)
     type: QuestionTypes;
