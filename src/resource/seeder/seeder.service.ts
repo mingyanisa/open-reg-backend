@@ -107,6 +107,7 @@ export class SeederService {
             const form: Form = {
                 eventId: ee._id,
                 questions,
+                groups: [{ title: faker.lorem.sentence(), order: 1 }],
                 title: 'F: ' + faker.commerce.productName() + '?',
                 description:
                     Math.round(Math.random()) === 0

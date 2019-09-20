@@ -1,12 +1,14 @@
 import { Model, Document, Schema } from 'mongoose';
 import { Question, QuestionSchema } from './question.model';
 import { EVENT_MODEL } from '../event/event.model';
+import { FormGroup, FormGroupSchema } from './formGroup.model';
 
 export interface Form {
     eventId: string;
+    groups: FormGroup[];
     questions: Question[];
     title: string;
-    description: string;
+    description?: string;
 }
 
 export interface FormDocument extends Document, Form {}
@@ -20,6 +22,10 @@ export const FormSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref: EVENT_MODEL,
+    },
+    groups: {
+        type: [FormGroupSchema],
+        required: true,
     },
     questions: {
         type: [QuestionSchema],

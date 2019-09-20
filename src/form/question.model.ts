@@ -43,7 +43,6 @@ export const QuestionSchema = new Schema({
     order: {
         type: Number,
         required: true,
-        // unique: true,
     },
     group: {
         type: Number,
