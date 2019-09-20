@@ -17,8 +17,9 @@ export class FormService {
         return await newForm.save();
     }
 
-    findAll() {
-        return this.formModel.find().exec();
+    async findAll() {
+        const forms = await this.formModel.find().exec();
+        return forms;
     }
 
     findById(id: string) {

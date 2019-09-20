@@ -14,6 +14,7 @@ export enum QuestionTypes {
 
 export interface Question {
     order: number;
+    group: number;
     type: QuestionTypes;
     title: string;
     choices: string[];
@@ -43,6 +44,11 @@ export const QuestionSchema = new Schema({
         type: Number,
         required: true,
         // unique: true,
+    },
+    group: {
+        type: Number,
+        required: false,
+        default: 1,
     },
     type: {
         type: String,

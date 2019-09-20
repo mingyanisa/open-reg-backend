@@ -92,6 +92,7 @@ export class SeederService {
                 const question: Question = {
                     type,
                     order,
+                    group: i < Math.floor(this.ENTRIES / 2) ? 1 : 2,
                     title: 'Q: ' + faker.commerce.productName(),
                     choices: choices.length > 0 ? choices : null,
                     required: Math.round(Math.random()) === 0,
