@@ -1,7 +1,7 @@
 import { Model, Document, Schema } from 'mongoose';
 import { Question, QuestionSchema } from './question.model';
 import { EVENT_MODEL } from '../event/event.model';
-import { FormGroup, FormGroupSchema } from './formGroup.model';
+import { FormGroup, FormGroupSchema } from './form-group.model';
 
 export interface Form {
     eventId: string;
