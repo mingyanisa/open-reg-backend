@@ -2,11 +2,13 @@ version: "3.2"
 
 services:
   backend: 
+    build:
+      context: .
+      dockerfile: ./Dockerfiledev
     volumes:
       - ./src:/app/src
-    command: ['yarn', 'start:dev']
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
     environment: 
       MONGO_URL: mongodb://db/open-reg
       SECRET: secret

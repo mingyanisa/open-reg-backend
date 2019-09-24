@@ -1,0 +1,10 @@
+version: "3.2"
+
+services:
+  backend: 
+    ports:
+      - ${PORT}:${PORT}
+    environment: 
+      MONGO_URL: mongodb+srv://openreg:UKK7bh7BXmtyeTAr@openreg-tq9b7.mongodb.net/test?retryWrites=true&w=majority
+      SECRET: 
+      NODE_ENV: staging
