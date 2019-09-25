@@ -30,7 +30,7 @@ export class QuestionDTO implements Question {
     @IsInt()
     order: number;
 
-    @ApiModelProperty()
+    @ApiModelProperty({ type: [String] })
     @IsOptional()
     @IsArray()
     choices: string[];
@@ -43,7 +43,7 @@ export class QuestionDTO implements Question {
     @ApiModelProperty()
     @IsOptional()
     @IsString()
-    description: string;
+    description?: string;
 }
 
 export class FormGroupDTO implements FormGroup {
@@ -70,7 +70,7 @@ export class CreateFormDTO implements Form {
     @IsString()
     title: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({ type: [FormGroupDTO] })
     @ValidateNested({ each: true })
     @Type(() => FormGroupDTO)
     groups: FormGroupDTO[];
@@ -78,9 +78,9 @@ export class CreateFormDTO implements Form {
     @ApiModelProperty()
     @IsOptional()
     @IsString()
-    description: string;
+    description?: string;
 
-    @ApiModelProperty()
+    @ApiModelProperty({ type: [QuestionDTO] })
     @ValidateNested({ each: true })
     @Type(() => QuestionDTO)
     questions: QuestionDTO[];

@@ -19,7 +19,7 @@ export interface Question {
     title: string;
     choices: string[];
     required: boolean;
-    description: string;
+    description?: string;
 }
 
 export interface QuestionDocument extends Document, Question {}
