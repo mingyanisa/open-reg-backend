@@ -1,7 +1,7 @@
 version: "3.2"
 
 services:
-  backend: 
+  backend:  
     ports:
       - ${PORT}:${PORT}
     environment: 

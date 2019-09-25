@@ -3,8 +3,6 @@ WORKDIR /app
 COPY package.json .
 RUN yarn
 COPY . .
-RUN yarn build
-RUN npm prune --production
-CMD yarn start:prod
+CMD yarn build && npm prune --production && yarn start:prod
 
 
