@@ -5,10 +5,19 @@ export interface User extends Document {
     password: string;
     info: {
         email: string;
+        line: string;
+        facebook: string;
         firstName: string;
         firstNameEn: string;
         lastName: string;
         lastNameEn: string;
+        nickName: string;
+        nickNameEn: string;
+        title: string;
+        titleEn: string;
+        tel: string;
+        emergencyTel: string;
+        emergencyRelationship: string;
         [key: string]: string;
     };
 }
@@ -20,12 +29,18 @@ export const USER_MODEL = 'user';
 const UserInfoSchema = new Schema(
     {
         email: String,
+        line: String,
+        facebook: String,
         firstName: String,
         firstNameEn: String,
         lastName: String,
         lastNameEn: String,
+        nickName: String,
+        nickNameEn: String,
+        title: String,
+        titleEn: String,
     },
-    { strict: true },
+    { strict: false },
 );
 
 export const UserSchema = new Schema({
