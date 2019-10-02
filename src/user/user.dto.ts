@@ -10,3 +10,14 @@ export class CreateUserDTO {
     @IsString()
     password: string;
 }
+
+export class CreateUserFromChulaSsoDTO {
+    @IsString()
+    chulaId: string;
+
+    @IsString()
+    faculty: string;
+
+    @IsString()
+    role: string;
+}
