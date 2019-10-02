@@ -16,4 +16,12 @@ export class ConfigService {
     get secret(): string {
         return this.get('SECRET');
     }
+
+    get chulaAppId(): string {
+        return this.get('CHULA_APP_ID');
+    }
+
+    get chulaAppSecret(): string {
+        return this.get('CHULA_APP_SECRET');
+    }
 }
