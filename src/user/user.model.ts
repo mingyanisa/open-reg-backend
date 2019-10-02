@@ -39,6 +39,9 @@ const UserInfoSchema = new Schema(
         nickNameEn: String,
         title: String,
         titleEn: String,
+        tel: String,
+        emergencyTel: String,
+        emergencyRelationship: String,
     },
     { strict: false },
 );
